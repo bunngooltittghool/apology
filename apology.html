@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="My heartfelt apology — I'm truly sorry from the bottom of my heart 💗" />
+  <title>My Apology 💖 — From the Bottom of My Heart</title>
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Extra styles only for this page -->
+  <style>
+    /* Apology letter feel */
+    .letter-card {
+      max-width: 660px;
+      text-align: left;
+    }
+
+    .letter-header {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    .letter-line {
+      font-size: clamp(0.95rem, 2.5vw, 1.05rem);
+      color: var(--text-dark);
+      line-height: 1.9;
+      margin-bottom: 18px;
+      animation: fadeSlideUp 0.8s ease both;
+    }
+
+    .letter-line em {
+      color: var(--orange-deep);
+      font-style: normal;
+      font-weight: 800;
+    }
+
+    .letter-sign {
+      margin-top: 32px;
+      text-align: right;
+      font-family: 'Pacifico', cursive;
+      font-size: 1.4rem;
+      background: linear-gradient(135deg, var(--pink-deep), var(--orange-mid));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Reason pills */
+    .reasons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 20px 0 28px;
+      justify-content: center;
+    }
+    .reason-pill {
+      background: rgba(255,180,200,0.3);
+      border: 1.5px solid rgba(255,150,180,0.4);
+      border-radius: 50px;
+      padding: 8px 18px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--text-mid);
+      animation: bounceIn 0.6s ease both;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg-orbs" aria-hidden="true">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="orb orb-4"></div>
+  </div>
+
+  <div class="hearts-container" aria-hidden="true"></div>
+  <div class="sparkles-container" aria-hidden="true"></div>
+
+  <nav class="nav-strip" aria-label="Page progress">
+    <div class="nav-dot" title="Home"></div>
+    <div class="nav-dot active" title="Apology"></div>
+    <div class="nav-dot"       title="Forgiveness"></div>
+  </nav>
+
+  <main class="page" id="apology">
+    <div class="glass-card letter-card">
+
+      <div class="letter-header">
+        <span class="emoji-big" role="img" aria-label="Broken heart">💔</span>
+        <h1 class="display-title">I'm So Sorry</h1>
+        <p class="subtitle">A letter from the heart 🌸</p>
+      </div>
+
+      <div class="dots-divider" aria-hidden="true">
+        <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+      </div>
+
+      <p class="letter-line delay-1">
+        I've been thinking about this a lot, and I know that <em>I messed up.</em>
+        There's no excuse for how things went, and I'm not going to pretend otherwise.
+      </p>
+
+      <p class="letter-line delay-2">
+        You mean so much to me, and the last thing I ever wanted to do was
+        hurt you. The truth is, I <em>care about you deeply,</em> and that's
+        exactly why this has been eating me up inside. 🥺
+      </p>
+
+      <p class="letter-line delay-3">
+        I want to be better — for you, for us, for everything we share.
+        I promise I'm not just saying that. I mean every single word with
+        <em>every piece of my heart.</em>
+      </p>
+
+      <!-- Why I'm sorry chips -->
+      <p class="letter-line delay-3" style="text-align:center; margin-top:24px; margin-bottom:8px; font-weight:700; color:var(--text-mid);">
+        What I'm truly sorry for 🌷
+      </p>
+      <div class="reasons">
+        <span class="reason-pill delay-1">😔 Hurting your feelings</span>
+        <span class="reason-pill delay-2">😶 Not thinking first</span>
+        <span class="reason-pill delay-3">💬 Not communicating better</span>
+        <span class="reason-pill delay-1">🤍 Making you feel unheard</span>
+        <span class="reason-pill delay-2">⏳ Taking you for granted</span>
+      </div>
+
+      <p class="letter-line delay-4">
+        You deserve someone who shows up for you every single day —
+        and I <em>want to be that person.</em> Please give me the
+        chance to show you I mean it. 💗
+      </p>
+
+      <p class="letter-sign">With all my love 💝</p>
+
+      <div class="btn-group">
+        <a href="index.html"   class="btn btn-secondary" aria-label="Go back home">← Back</a>
+        <a href="forgive.html" class="btn btn-primary"   aria-label="Continue to forgiveness page">
+          Continue 💌
+        </a>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

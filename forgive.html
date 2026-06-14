@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Will you forgive me? Your answer means the world 💗" />
+  <title>Forgive Me? 🥺 — The Big Question</title>
+  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    /* Counter badge that tracks near-misses on the mad button */
+    #miss-counter {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(255,255,255,0.55);
+      border: 1.5px solid rgba(255,180,200,0.5);
+      border-radius: 50px;
+      padding: 6px 20px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--text-mid);
+      backdrop-filter: blur(8px);
+      z-index: 30;
+      transition: opacity 0.3s;
+      white-space: nowrap;
+    }
+
+    /* Question page top emoji pulse */
+    .pulse-ring {
+      display: inline-block;
+      animation: pulseRing 1.8s ease-in-out infinite;
+    }
+    @keyframes pulseRing {
+      0%,100% { transform: scale(1); }
+      50%      { transform: scale(1.15); }
+    }
+
+    /* Promise list */
+    .promise-list {
+      list-style: none;
+      text-align: left;
+      margin: 20px 0 28px;
+    }
+    .promise-list li {
+      padding: 10px 0;
+      border-bottom: 1px dashed rgba(255,150,180,0.35);
+      font-size: 0.98rem;
+      font-weight: 600;
+      color: var(--text-dark);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      animation: fadeSlideUp 0.6s ease both;
+    }
+    .promise-list li:last-child { border-bottom: none; }
+
+    /* Inline button area (forgive stays in-card; mad is fixed via JS) */
+    .forgive-area {
+      display: flex;
+      justify-content: center;
+      margin-top: 32px;
+    }
+
+    /* Mad button hint text shown when user tries and fails a few times */
+    #hint-text {
+      position: fixed;
+      top: 80px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(255,255,255,0.7);
+      border-radius: 20px;
+      padding: 8px 20px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--text-mid);
+      backdrop-filter: blur(8px);
+      z-index: 30;
+      opacity: 0;
+      transition: opacity 0.4s;
+      white-space: nowrap;
+      pointer-events: none;
+    }
+    #hint-text.visible { opacity: 1; }
+  </style>
+</head>
+<body>
+
+  <div class="bg-orbs" aria-hidden="true">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="orb orb-4"></div>
+  </div>
+
+  <div class="hearts-container" aria-hidden="true"></div>
+  <div class="sparkles-container" aria-hidden="true"></div>
+
+  <nav class="nav-strip" aria-label="Page progress">
+    <div class="nav-dot" title="Home"></div>
+    <div class="nav-dot" title="Apology"></div>
+    <div class="nav-dot active" title="Forgiveness"></div>
+  </nav>
+
+  <!-- Hint text (shown after a few near-misses) -->
+  <p id="hint-text" role="status" aria-live="polite">
+    😂 That button really doesn't want to be clicked!
+  </p>
+
+  <!-- Near-miss counter -->
+  <p id="miss-counter" aria-live="polite">
+    🏃 The button has escaped <span id="miss-count">0</span> time(s)!
+  </p>
+
+  <!-- Success Overlay (shown after clicking "I Forgive You") -->
+  <div id="success-overlay" role="dialog" aria-modal="true" aria-label="You've been forgiven!">
+    <div class="success-emoji" role="img" aria-label="Celebration hearts">🥰💗🎉</div>
+    <h2 class="success-title">Yay, I'm Forgiven!!</h2>
+    <p class="success-msg">
+      You just made my whole world light up ✨<br/>
+      Thank you for being so kind and wonderful.<br/>
+      I promise to do better every single day. 💗
+    </p>
+    <br/><br/>
+    <a href="index.html" class="btn btn-primary" style="margin-top:16px;">
+      🌸 Start Over
+    </a>
+  </div>
+
+  <!-- Main content -->
+  <main class="page" id="forgive">
+    <div class="glass-card">
+
+      <div class="pulse-ring">
+        <span class="emoji-big" role="img" aria-label="Pleading face">🥺</span>
+      </div>
+
+      <h1 class="display-title">Will You Forgive Me?</h1>
+      <p class="subtitle">This is the big moment… 🌸</p>
+
+      <div class="dots-divider" aria-hidden="true">
+        <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+      </div>
+
+      <p class="body-text delay-2">
+        I've poured my whole heart into making this for you.
+        If you forgive me, here's what I promise:
+      </p>
+
+      <ul class="promise-list" aria-label="My promises to you">
+        <li class="delay-1"><span role="img" aria-hidden="true">💬</span> I'll always listen to you first</li>
+        <li class="delay-2"><span role="img" aria-hidden="true">🤍</span> I'll put your feelings before my pride</li>
+        <li class="delay-3"><span role="img" aria-hidden="true">🌸</span> I'll show up for you, every single day</li>
+        <li class="delay-4"><span role="img" aria-hidden="true">✨</span> I'll keep making it up to you forever</li>
+      </ul>
+
+      <!-- "I Forgive You" stays in-card -->
+      <div class="forgive-area">
+        <button id="forgive-btn" class="btn" aria-label="Click to forgive me">
+          ❤️ I Forgive You
+        </button>
+      </div>
+
+      <p style="margin-top:20px; font-size:0.88rem; color:var(--text-light); font-weight:600;">
+        (The other button is… a little shy 😅)
+      </p>
+
+    </div>
+  </main>
+
+  <!-- "I'll Stay Mad" button — positioned & moved entirely by script.js -->
+  <button id="mad-btn" class="btn" aria-label="Stay mad button — it will try to escape!">
+    😤 I'll Stay Mad
+  </button>
+
+  <script src="script.js"></script>
+
+  <!-- Page-specific script: miss counter & hint logic -->
+  <script>
+    (function() {
+      let misses = 0;
+      const countEl = document.getElementById('miss-count');
+      const hintEl  = document.getElementById('hint-text');
+      const madBtn  = document.getElementById('mad-btn');
+
+      function recordMiss() {
+        misses++;
+        if (countEl) countEl.textContent = misses;
+        if (misses >= 3 && hintEl) {
+          hintEl.classList.add('visible');
+          // Hide hint after 3s
+          setTimeout(() => hintEl.classList.remove('visible'), 3000);
+        }
+      }
+
+      // Intercept both mouse and touch events to count near-misses
+      if (madBtn) {
+        madBtn.addEventListener('mouseenter', recordMiss);
+        madBtn.addEventListener('touchstart', recordMiss, { passive: false });
+      }
+    })();
+  </script>
+</body>
+</html>
